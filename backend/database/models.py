@@ -17,7 +17,7 @@ Tables:
 from datetime import datetime
 from sqlalchemy import ( # type: ignore
     Column, Integer, String, Float, Boolean,
-    DateTime, Text, ForeignKey, JSON, Enum as SAEnum
+    DateTime, Text, ForeignKey, JSON
 )
 from sqlalchemy.orm import relationship, declarative_base # type: ignore
 
