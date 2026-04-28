@@ -89,6 +89,6 @@ MAX_ERRORS_BEFORE_STRATEGY_SWITCH = 3   # Same error this many times leads to a 
 STAGNATION_SESSION_THRESHOLD = 3        # Sessions with no improvement = stagnation
 
 # FastAPI
-API_HOST = os.getenv("API_HOST")
-API_PORT = int(os.getenv("API_PORT"))
-CORS_ORIGINS = os.getenv("CORS_ORIGINS").split(",")
+API_HOST = os.getenv("API_HOST", "0.0.0.0")
+API_PORT = int(os.getenv("API_PORT", "8000"))
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
