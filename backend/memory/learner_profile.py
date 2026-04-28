@@ -4,7 +4,7 @@ Learner profile operations.
 All reads and writes to the learner model go through here
 """
 
-from datetime import datetime, date
+from datetime import datetime
 from typing import Optional
 from sqlalchemy.orm import Session # type: ignore
 
@@ -88,7 +88,7 @@ def get_learner_profiles_for_user(db: Session, user_id: int) -> list[LearnerProf
     """Return all active language profiles for a given user."""
     return (
         db.query(LearnerProfile)
-        .filter(LearnerProfile.user_id == user_id, LearnerProfile.is_active == True)
+        .filter(LearnerProfile.user_id == user_id, LearnerProfile.is_active)
         .order_by(LearnerProfile.id.asc())
         .all()
     )
@@ -102,7 +102,7 @@ def get_learner_profile(
         .filter(
             LearnerProfile.user_id == user_id,
             LearnerProfile.target_language == target_language.lower(),
-            LearnerProfile.is_active == True,
+            LearnerProfile.is_active,
         )
         .first()
     )
@@ -115,7 +115,7 @@ def get_learner_profile_by_id(db: Session, profile_id: int) -> Optional[LearnerP
 def get_all_profiles_for_user(db: Session, user_id: int) -> list[LearnerProfile]:
     return (
         db.query(LearnerProfile)
-        .filter(LearnerProfile.user_id == user_id, LearnerProfile.is_active == True)
+        .filter(LearnerProfile.user_id == user_id, LearnerProfile.is_active)
         .all()
     )
 
@@ -226,7 +226,7 @@ def get_current_curriculum_plan(db: Session, profile_id: int) -> Optional[Curric
         db.query(CurriculumPlan)
         .filter(
             CurriculumPlan.learner_profile_id == profile_id,
-            CurriculumPlan.is_current == True,
+            CurriculumPlan.is_current,
         )
         .order_by(CurriculumPlan.created_at.desc())
         .first()
