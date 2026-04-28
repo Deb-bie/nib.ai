@@ -5,12 +5,10 @@ Key fixture: mock_groq — replaces the real Groq API client with a deterministi
 """
 
 import pytest # type: ignore
-from unittest.mock import MagicMock, patch
 from sqlalchemy import create_engine # type: ignore
 from sqlalchemy.orm import sessionmaker # type: ignore
 
 from backend.database.models import Base
-from backend.database.db import get_db
 from backend.memory.learner_profile import create_user, create_learner_profile
 from backend.database.seed_loader import seed_learner_profile # type: ignore
 
