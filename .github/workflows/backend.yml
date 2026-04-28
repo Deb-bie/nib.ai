@@ -40,13 +40,9 @@ jobs:
     needs: lint
 
     env:
-      # Tests use SQLite in-memory — DATABASE_URL is not used, but some
-      # imports may read it from the environment. Set a dummy value.
       DATABASE_URL: "sqlite:///:memory:"
-      # mock_groq patches the Groq client, so no real key is needed.
       GROQ_API_KEY: test-key-not-used
       GROQ_MODEL: llama-3.3-70b-versatile
-      # Silence heavy-dep download attempts during tests
       WHISPER_MODEL: base
 
     steps:
@@ -68,4 +64,4 @@ jobs:
 
       - name: Run tests
         run: |
-          PYTHONPATH=. pytest tests/ -v --tb=short
+          PYTHONPATH=.:backend pytest tests/ -v --tb=short
