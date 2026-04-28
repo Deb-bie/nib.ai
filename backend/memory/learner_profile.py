@@ -251,7 +251,7 @@ def save_curriculum_plan(
 
     db.query(CurriculumPlan).filter(
         CurriculumPlan.learner_profile_id == profile_id,
-        CurriculumPlan.is_current == True,
+        CurriculumPlan.is_current,
     ).update({"is_current": False})
 
     plan = CurriculumPlan(
