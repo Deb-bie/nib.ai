@@ -1,0 +1,171 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  height: 56px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.navbar-brand:hover { opacity: 0.85; }
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.nav-link:hover  { color: var(--text); background: var(--bg-elevated); }
+.nav-link.active { color: var(--amber); background: var(--amber-glow2); }
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.nav-lang      { font-size: 0.72rem; text-transform: capitalize; }
+.nav-lang-flag { font-size: 1rem; line-height: 1; }
+.nav-user      { font-size: 0.85rem; color: var(--text-muted); }
+
+.btn-sm { padding: 0.35rem 0.65rem; font-size: 0.8rem; }
+.theme-toggle { padding: 0.35rem 0.5rem; }
+
+.lang-switcher { position: relative; }
+
+.lang-switcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.lang-chevron { color: var(--text-muted); margin-top: 1px; }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 165px;
+  z-index: 200;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.lang-dropdown-label { padding: 0.25rem 0.5rem; margin-bottom: 0.1rem; }
+.lang-dropdown-flag  { font-size: 1.1rem; margin-right: 0.3rem; }
+.lang-dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0.25rem;
+}
+
+.lang-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.4rem 0.65rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.84rem;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s;
+  text-transform: capitalize;
+}
+
+.lang-dropdown-item .small.muted { margin-left: auto; }
+.lang-dropdown-item:hover { background: var(--bg-elevated); }
+.lang-add-link { color: var(--amber); font-weight: 500; text-transform: none; }
+
+/* ── Profile button ── */
+.nav-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-user-btn:hover { color: var(--text); background: var(--bg-elevated); }
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.55rem 0.25rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 500;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.bottom-nav-item.active { color: var(--amber); }
+.bottom-nav-label { line-height: 1; }
+
+.desktop-only { display: flex; }
+.mobile-only  { display: none; }
+
+@media (max-width: 767px) {
+  .navbar { padding: 0 1rem; gap: 0.75rem; }
+  .desktop-only { display: none !important; }
+  .mobile-only  { display: flex; }
+  main { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+}

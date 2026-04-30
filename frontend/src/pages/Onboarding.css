@@ -1,0 +1,185 @@
+.onboarding {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.onboarding-bg { position: fixed; inset: 0; pointer-events: none; }
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.07;
+}
+.bg-orb-1 {
+  width: 500px; height: 500px;
+  background: var(--amber);
+  top: -100px; left: -100px;
+}
+.bg-orb-2 {
+  width: 400px; height: 400px;
+  background: #4a7fb5;
+  bottom: -80px; right: -80px;
+}
+
+.onboarding-container {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+}
+
+.onboarding-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.onboarding-header p  { color: var(--text-muted); margin-top: 0.4rem; }
+
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.step-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s, transform 0.3s;
+}
+.step-dot.active { background: var(--amber); transform: scale(1.2); }
+
+.onboarding-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+}
+.onboarding-card h2 { margin-top: 0.5rem; }
+
+.step-back {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+.step-back:hover { color: var(--amber); }
+
+.form-fields { display: flex; flex-direction: column; gap: 1rem; }
+.field { display: flex; flex-direction: column; }
+
+/* Password input with show/hide toggle */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-with-icon input {
+  width: 100%;
+  padding-right: 2.4rem;
+}
+.input-icon-btn {
+  position: absolute;
+  right: 0.65rem;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s;
+}
+.input-icon-btn:hover { color: var(--text); }
+
+/* Field hints */
+.field-hint {
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  color: var(--text-muted);
+}
+.field-hint-warn { color: var(--red); }
+
+.btn-full { width: 100%; justify-content: center; }
+
+/* Language loading state */
+.langs-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: 2rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Language grid */
+.language-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+.lang-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+  text-align: left;
+}
+.lang-option:hover { border-color: var(--amber-dim); background: var(--amber-glow2); }
+.lang-option.selected { border-color: var(--amber); background: var(--amber-glow); }
+.lang-name  { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+.lang-native { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Goal grid */
+.goal-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.goal-option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: left;
+}
+.goal-option:hover { border-color: var(--amber-dim); background: var(--amber-glow2); }
+.goal-option.selected { border-color: var(--amber); background: var(--amber-glow); }
+.goal-icon { font-size: 1.2rem; }
+
+.error-msg {
+  background: rgba(192, 83, 58, 0.1);
+  border: 1px solid rgba(192, 83, 58, 0.25);
+  color: var(--red);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}

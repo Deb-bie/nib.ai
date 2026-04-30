@@ -1,0 +1,249 @@
+.profile-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── User card ── */
+.profile-user-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+.profile-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--amber-glow);
+  border: 2px solid rgba(232,168,56,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.profile-user-info { display: flex; flex-direction: column; gap: 0.25rem; }
+.profile-username { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
+.profile-email    { font-size: 0.82rem; color: var(--text-muted); }
+
+/* ── Languages section ── */
+.languages-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.languages-header h3 { margin: 0; }
+
+.lang-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lang-profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.15s;
+  gap: 0.75rem;
+}
+.lang-profile-card.active-lang {
+  border-color: var(--amber);
+  background: var(--amber-glow2);
+}
+.lang-profile-card:hover:not(.active-lang) { border-color: var(--border-soft); }
+
+.lang-profile-left  { display: flex; align-items: center; gap: 0.75rem; }
+.lang-flag          { font-size: 1.5rem; }
+.lang-profile-name  { font-size: 0.95rem; font-weight: 500; text-transform: capitalize; }
+.lang-profile-right { display: flex; align-items: center; gap: 0.6rem; }
+
+/* ── Add language panel ── */
+.add-lang-panel {
+  margin-top: 0.75rem;
+  padding: 1.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.add-lang-panel h3 { margin-bottom: 0.5rem; }
+.add-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.add-lang-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.15s;
+  text-align: left;
+}
+.add-lang-btn:hover { border-color: var(--amber-dim); background: var(--amber-glow2); }
+.add-lang-btn.selected { border-color: var(--amber); background: var(--amber-glow); }
+.add-lang-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.add-lang-name   { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+.add-lang-native { font-size: 0.72rem; color: var(--text-muted); }
+
+/* ── Active language banner ── */
+.profile-lang-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  gap: 1rem;
+}
+.plb-left  { display: flex; align-items: center; gap: 0.85rem; }
+.plb-flag  { font-size: 2rem; line-height: 1; }
+.plb-lang  { font-size: 1.05rem; font-weight: 600; text-transform: capitalize; }
+.plb-goal  { font-size: 0.78rem; margin-top: 0.15rem; }
+.plb-right { display: flex; flex-direction: column; align-items: flex-end; }
+.plb-level { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.plb-level-label { font-size: 0.7rem; margin-top: 0.15rem; }
+
+/* ── Stats card ── */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.pstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.85rem 0.5rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+}
+.pstat-val { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); }
+.pstat-lbl { font-size: 0.7rem; color: var(--text-muted); text-align: center; }
+
+/* ── Analytics section header ── */
+.analytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.analytics-header h3 { margin: 0; }
+
+/* ── Skills ── */
+.skill-analytics-rows { display: flex; flex-direction: column; gap: 0.65rem; }
+.skill-analytics-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 40px;
+  align-items: center;
+  gap: 0.75rem;
+}
+.skill-analytics-left {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.skill-analytics-name { font-size: 0.82rem; color: var(--text-muted); }
+.skill-analytics-bar {
+  height: 6px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill-analytics-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+.skill-analytics-level {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: right;
+  font-family: var(--font-display);
+}
+
+/* ── Vocabulary ── */
+.vocab-stat-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.vocab-stat-item { display: flex; flex-direction: column; gap: 0.15rem; }
+.vocab-stat-n { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.vocab-stat-l { font-size: 0.72rem; }
+.vocab-mastery-bar {
+  height: 6px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.4rem;
+}
+.vocab-mastery-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ── Recent performance ── */
+.perf-chart-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.perf-sessions-list { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 120px; }
+.psession-row { display: flex; align-items: center; gap: 0.6rem; }
+.psession-date { min-width: 52px; }
+.psession-type { flex: 1; text-transform: capitalize; }
+.psession-score { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; }
+
+/* ── Error patterns ── */
+.error-patterns { display: flex; flex-direction: column; gap: 0.6rem; }
+.error-pattern-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.error-pattern-row:last-child { border-bottom: none; }
+.epr-concept { font-size: 0.88rem; font-weight: 500; text-transform: capitalize; }
+.epr-category { font-size: 0.72rem; margin-top: 0.1rem; }
+.epr-count {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  color: var(--red);
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .profile-page { padding: 1rem; gap: 1rem; }
+  .profile-avatar { width: 52px; height: 52px; font-size: 1.3rem; }
+  .profile-username { font-size: 1.15rem; }
+  .add-lang-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .profile-stats { grid-template-columns: repeat(2, 1fr); }
+  .skill-analytics-row { grid-template-columns: 90px 1fr 32px; gap: 0.5rem; }
+  .plb-level { font-size: 1.3rem; }
+  .vocab-stat-n { font-size: 1.3rem; }
+  .perf-chart-row { flex-direction: column; gap: 0.75rem; }
+}

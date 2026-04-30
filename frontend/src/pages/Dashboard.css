@@ -1,0 +1,206 @@
+.dashboard {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dashboard-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 56px);
+}
+
+.dash-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.start-btn { padding: 0.75rem 1.75rem; }
+
+.dash-level-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.level-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+}
+.level-pill {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.1rem 1.25rem;
+}
+.stat-n {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+.skills-grid { display: flex; flex-direction: column; gap: 0.7rem; }
+.skill-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 44px;
+  align-items: center;
+  gap: 0.75rem;
+}
+.skill-name { font-size: 0.83rem; color: var(--text-muted); text-transform: capitalize; }
+.skill-level { font-size: 0.7rem; justify-self: end; }
+
+.sessions-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.session-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+}
+.session-score-wrap { display: flex; align-items: baseline; gap: 0.15rem; }
+.session-score { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+
+.error-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.error-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  text-transform: capitalize;
+}
+
+/* ── Curriculum Plan Card ── */
+.curriculum-card { padding: 1.25rem 1.5rem; }
+
+.curriculum-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.curriculum-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.curriculum-title h3 { margin: 0; }
+.plan-date { flex-shrink: 0; }
+
+/* Locked state */
+.locked-card {
+  border-style: dashed;
+  opacity: 0.92;
+}
+.locked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.6rem;
+}
+
+/* Preview skeleton rows */
+.preview-focus {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.focus-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.focus-preview-label { font-size: 0.78rem; width: 88px; flex-shrink: 0; }
+.focus-preview-pct   { font-size: 0.78rem; width: 28px; text-align: right; }
+.locked-bar { background: var(--border); opacity: 0.5; }
+
+.preview-concepts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+}
+.concept-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.concept-lock-icon { color: var(--text-faint); }
+
+/* Active plan */
+.curriculum-focus {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.focus-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.focus-label-sm { font-size: 0.78rem; color: var(--text-muted); text-transform: capitalize; width: 88px; flex-shrink: 0; }
+.focus-pct-sm   { font-size: 0.78rem; color: var(--text-muted); width: 32px; text-align: right; }
+
+.curriculum-concepts,
+.curriculum-issues { }
+
+.concept-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.concept-tag { font-size: 0.75rem; text-transform: capitalize; }
+
+.curriculum-reasoning {
+  padding: 0.65rem 0.85rem;
+  background: var(--amber-glow2);
+  border: 1px solid rgba(232,168,56,0.12);
+  border-radius: var(--radius);
+}
+.reasoning-label { margin-bottom: 0.3rem; font-weight: 500; }
+.reasoning-text  { color: var(--text-muted); font-style: italic; line-height: 1.5; }
+
+@media (max-width: 767px) {
+  .dashboard { padding: 1rem; gap: 0.9rem; }
+  .dash-hero  { flex-direction: column; align-items: flex-start; }
+  .start-btn  { width: 100%; justify-content: center; }
+
+  /* Level pill + 3 stats collapse to 2×2 */
+  .dash-level-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .level-card { padding: 1rem; }
+  .level-pill { font-size: 2rem; }
+
+  .skill-row { grid-template-columns: 70px 1fr 36px; }
+
+  .curriculum-card { padding: 1rem; }
+  .focus-label-sm  { width: 70px; }
+}
