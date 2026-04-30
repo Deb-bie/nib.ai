@@ -166,16 +166,11 @@ class Orchestrator:
                 "plan_summary": dict,
             }
         """
-        # Auto-end any in-memory session rather than blocking with 409
         if self.profile_id in _active_sessions:
-            logger.info(
-                f"Auto-ending existing in-memory session for profile {self.profile_id}"
+            raise RuntimeError(
+                f"A session is already active for profile {self.profile_id}. "
+                "End it before starting a new one."
             )
-            stale = _active_sessions.pop(self.profile_id)
-            try:
-                stale.end_session()
-            except Exception:
-                pass
 
         agent = SessionAgent(self.db, self.profile_id)
         opening = agent.start_session(input_mode=input_mode)
