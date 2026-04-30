@@ -83,7 +83,7 @@ def seeded_profile(db, test_user):
     return profile
 
 
-# ── Mock LLM ──────────────────────────────────────────────────────────────────
+# Mock LLM
 
 MOCK_SESSION_REPLY = "¡Hola! Vamos a practicar el español. ¿Cómo estás hoy?"
 
@@ -159,16 +159,24 @@ def mock_groq(monkeypatch):
     def fake_single_turn_json(prompt, system_prompt="", **kwargs):
         return fake_chat_json([{"role": "user", "content": prompt}], system_prompt, **kwargs)
 
-    monkeypatch.setattr("backend.llm.groq_client.chat", fake_chat)
-    monkeypatch.setattr("backend.llm.groq_client.chat_json", fake_chat_json)
-    monkeypatch.setattr("backend.llm.groq_client.single_turn", fake_single_turn)
-    monkeypatch.setattr("backend.llm.groq_client.single_turn_json", fake_single_turn_json)
 
-    
-    monkeypatch.setattr("backend.agent.session_agent.chat", fake_chat)
-    monkeypatch.setattr("backend.agent.session_agent.single_turn_json", fake_single_turn_json)
-    monkeypatch.setattr("backend.agent.curriculum_planner.single_turn_json", fake_single_turn_json)
-    monkeypatch.setattr("backend.agent.assessment_agent.chat", fake_chat)
-    monkeypatch.setattr("backend.agent.assessment_agent.single_turn_json", fake_single_turn_json)
+    def patch(module_path, attr, value):
+        for prefix in ["backend.", ""]:
+            full = f"{prefix}{module_path}"
+            try:
+                monkeypatch.setattr(f"{full}.{attr}", value)
+            except (AttributeError, ModuleNotFoundError, Exception):
+                pass
+
+    patch("llm.groq_client", "chat",             fake_chat)
+    patch("llm.groq_client", "chat_json",        fake_chat_json)
+    patch("llm.groq_client", "single_turn",      fake_single_turn)
+    patch("llm.groq_client", "single_turn_json", fake_single_turn_json)
+
+    patch("agent.session_agent",     "chat",             fake_chat)
+    patch("agent.session_agent",     "single_turn_json", fake_single_turn_json)
+    patch("agent.curriculum_planner","single_turn_json", fake_single_turn_json)
+    patch("agent.assessment_agent",  "chat",             fake_chat)
+    patch("agent.assessment_agent",  "single_turn_json", fake_single_turn_json)
 
     return fake_chat

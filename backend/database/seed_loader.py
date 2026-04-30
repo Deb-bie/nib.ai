@@ -71,14 +71,17 @@ def seed_learner_profile(
     profile_id: int,
     language: str,
     cefr_level: str = "A1",
-) -> None:
+) -> dict:
     """
     Insert starter vocabulary and grammar rows for a learner profile.
     Safe to call multiple times — skips rows that already exist.
+    Returns counts of rows actually inserted.
     """
     language = language.lower()
     vocab_rows = _VOCABULARY.get(language, [])
     grammar_rows = _GRAMMAR.get(language, [])
+    vocabulary_added = 0
+    grammar_added = 0
 
     now = datetime.utcnow()
 
@@ -112,6 +115,7 @@ def seed_learner_profile(
             repetitions=0,
             next_review_date=now,
         ))
+        vocabulary_added += 1
 
     for entry in grammar_rows:
         exists = (
@@ -133,5 +137,7 @@ def seed_learner_profile(
             introduced=True,
             introduced_at=now,
         ))
+        grammar_added += 1
 
     db.commit()
+    return {"vocabulary_added": vocabulary_added, "grammar_added": grammar_added}

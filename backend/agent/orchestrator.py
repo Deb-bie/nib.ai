@@ -62,6 +62,7 @@ class Orchestrator:
         native_language: str,
         target_language: str,
         learning_goal: str = "conversational",
+        password_hash: str = "",      
     ) -> dict:
         """
         Full onboarding flow for a new user.
@@ -74,7 +75,7 @@ class Orchestrator:
             )
 
         # Create user
-        user = create_user(db, username, email, native_language)
+        user = create_user(db, username, email, native_language, password_hash)
 
         # Create learner profile — starts at A1 (beginner)
         profile = create_learner_profile(
@@ -235,17 +236,8 @@ class Orchestrator:
                 "mastered_concepts": [],
             }
 
-        # Nothing to end — return a safe empty result instead of crashing
-        logger.warning(f"end_session called for profile {self.profile_id} but no session found.")
-        return {
-            "session_id": None,
-            "performance_score": 0,
-            "summary": "No active session was found.",
-            "errors_made": 0,
-            "exercises_completed": 0,
-            "exercises_correct": 0,
-            "mastered_concepts": [],
-        }
+        
+        raise RuntimeError("No active session found for this profile.")
 
     def is_session_limit_reached(self) -> bool:
         """True if the active session has hit the per-session exchange cap."""
