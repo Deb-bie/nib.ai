@@ -17,7 +17,6 @@ Reference: https://www.supermemo.com/en/blog/application-of-a-computer-to-improv
 """
 
 from datetime import datetime, timedelta
-from typing import Optional
 from sqlalchemy.orm import Session # type: ignore
 
 from database.models import VocabularyItem, SRReview
@@ -115,7 +114,7 @@ def get_due_reviews(db: Session, profile_id: int, limit: int = 20) -> list[Vocab
         .join(SRReview, VocabularyItem.id == SRReview.vocabulary_item_id)
         .filter(
             VocabularyItem.learner_profile_id == profile_id,
-            VocabularyItem.mastered == False,
+            ~VocabularyItem.mastered,
             SRReview.next_review_date <= now,
         )
         .order_by(SRReview.next_review_date.asc())
@@ -197,7 +196,7 @@ def get_vocabulary_stats(db: Session, profile_id: int) -> dict:
     total = db.query(VocabularyItem).filter(VocabularyItem.learner_profile_id == profile_id).count()
     mastered = db.query(VocabularyItem).filter(
         VocabularyItem.learner_profile_id == profile_id,
-        VocabularyItem.mastered == True,
+        VocabularyItem.mastered,
     ).count()
     due_today = len(get_due_reviews(db, profile_id))
 

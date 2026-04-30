@@ -7,7 +7,6 @@ the agent is notified so it can switch teaching strategy.
 """
 
 from datetime import datetime
-from typing import Optional
 from sqlalchemy.orm import Session # type: ignore
 
 from database.models import Error
@@ -191,7 +190,7 @@ def mark_errors_resolved_bulk(db: Session, profile_id: int, concepts: list[str])
         .filter(
             Error.learner_profile_id == profile_id,
             Error.concept.in_(concepts),
-            Error.resolved == False,
+            ~Error.resolved,
         )
         .update({"resolved": True}, synchronize_session=False)
     )
