@@ -7,6 +7,7 @@ adapts difficulty mid-session, and produces a full evaluation
 when the session ends.
 """
 
+import os
 import logging
 from sqlalchemy.orm import Session # type: ignore
 
@@ -35,6 +36,7 @@ from memory.spaced_repetition import get_due_items_summary
 from agent.curriculum_planner import CurriculumPlanner
 
 logger = logging.getLogger(__name__)
+
 
 MAX_USER_EXCHANGES: int = int(os.getenv("MAX_SESSION_EXCHANGES", "8"))
 
