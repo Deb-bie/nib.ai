@@ -268,7 +268,7 @@ class SessionAgent:
         evaluation = extract_session_evaluation(raw)
 
         # Log errors to error tracker
-        errors_logged = self._log_session_errors(evaluation.get("errors", []))
+        self._log_session_errors(evaluation.get("errors", []))
 
         # Update skill levels
         self._update_skill_levels(evaluation.get("skill_updates", {}))

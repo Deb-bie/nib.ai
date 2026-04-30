@@ -37,7 +37,7 @@ def log_error(
         .filter(
             Error.learner_profile_id == profile_id,
             Error.concept == concept,
-            Error.resolved == False,
+            ~Error.resolved,
         )
         .first()
     )
@@ -87,7 +87,7 @@ def get_recurring_errors(db: Session, profile_id: int, min_occurrences: int = 2)
         .filter(
             Error.learner_profile_id == profile_id,
             Error.occurrence_count >= min_occurrences,
-            Error.resolved == False,
+            ~Error.resolved,
         )
         .order_by(Error.occurrence_count.desc())
         .all()
@@ -100,8 +100,8 @@ def get_strategy_switch_errors(db: Session, profile_id: int) -> list[Error]:
         db.query(Error)
         .filter(
             Error.learner_profile_id == profile_id,
-            Error.strategy_switched == True,
-            Error.resolved == False,
+            Error.strategy_switched,
+            ~Error.resolved,
         )
         .all()
     )
@@ -113,7 +113,7 @@ def get_errors_by_category(db: Session, profile_id: int, category: str) -> list[
         .filter(
             Error.learner_profile_id == profile_id,
             Error.category == category,
-            Error.resolved == False,
+            ~Error.resolved,
         )
         .order_by(Error.occurrence_count.desc())
         .all()
@@ -131,7 +131,7 @@ def get_error_summary(db: Session, profile_id: int) -> dict:
     """
     errors = (
         db.query(Error)
-        .filter(Error.learner_profile_id == profile_id, Error.resolved == False)
+        .filter(Error.learner_profile_id == profile_id, ~Error.resolved)
         .order_by(Error.occurrence_count.desc())
         .limit(20)
         .all()
@@ -172,7 +172,7 @@ def mark_error_resolved(db: Session, profile_id: int, concept: str) -> bool:
         .filter(
             Error.learner_profile_id == profile_id,
             Error.concept == concept,
-            Error.resolved == False,
+            ~Error.resolved,
         )
         .first()
     )

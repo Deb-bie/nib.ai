@@ -6,7 +6,7 @@ Response parser — safely parses LLM output into structured Python objects.
 import json
 import re
 import logging
-from typing import Any, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ def parse_json(raw: str) -> dict | list:
             pass
 
     logger.error(f"Could not parse JSON from LLM response:\n{raw[:300]}")
-    raise ValueError(f"Could not extract valid JSON from LLM response")
+    raise ValueError("Could not extract valid JSON from LLM response")
 
 
 def parse_json_safe(raw: str, fallback: Any = None) -> Any:
