@@ -36,7 +36,6 @@ from agent.curriculum_planner import CurriculumPlanner
 
 logger = logging.getLogger(__name__)
 
-import os
 MAX_USER_EXCHANGES: int = int(os.getenv("MAX_SESSION_EXCHANGES", "8"))
 
 
