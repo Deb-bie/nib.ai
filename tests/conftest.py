@@ -54,7 +54,7 @@ def clear_active_sessions():
 
 @pytest.fixture
 def test_user(db):
-    return create_user(db, "testuser", "test@example.com", "english")
+    return create_user(db, "testuser", "test@example.com", "english", "hashedpassword123")
 
 
 @pytest.fixture

@@ -241,4 +241,4 @@ def db_two_profiles(db):
 
 def create_user_helper(db, username, email):
     from backend.memory.learner_profile import create_user
-    return create_user(db, username, email, "english")
+    return create_user(db, username, email, "english", "hashedpassword123")
