@@ -2,7 +2,7 @@
 Tests for the SM-2 spaced repetition algorithm.
 """
 
-import pytest # type: ignore
+
 from datetime import datetime, timedelta
 from backend.memory.spaced_repetition import (
     calculate_next_review,
@@ -144,7 +144,7 @@ class TestSpacedRepetitionDB:
         assert item.mastered is True
 
     def test_multiple_items_only_due_returned(self, db, test_profile):
-        item1 = add_vocabulary_item(db, test_profile.id, "uno", "one", "A1")
+        add_vocabulary_item(db, test_profile.id, "uno", "one", "A1")
         item2 = add_vocabulary_item(db, test_profile.id, "dos", "two", "A1")
         # Push item2 review far into the future
         item2.sr_review.next_review_date = datetime.utcnow() + timedelta(days=30)

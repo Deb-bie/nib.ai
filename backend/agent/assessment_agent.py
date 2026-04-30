@@ -24,7 +24,6 @@ from memory.learner_profile import (
     get_learner_profile_by_id,
     update_overall_level,
 )
-from memory.session_history import add_message, get_messages_for_llm
 from database.models import SkillLevel
 from config import CEFR_LEVELS
 

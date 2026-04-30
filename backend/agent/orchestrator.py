@@ -11,15 +11,13 @@ The FastAPI routes only talk to this class. It coordinates:
 import logging
 from sqlalchemy.orm import Session # type: ignore
 
-from agent.assessment_agent import AssessmentAgent, should_reassess
+from agent.assessment_agent import AssessmentAgent
 from agent.session_agent import SessionAgent
 from agent.curriculum_planner import CurriculumPlanner
 from memory.learner_profile import (
     create_user,
     create_learner_profile,
-    get_learner_profile,
     get_full_learner_state,
-    get_user_by_username,
 )
 from memory.session_history import get_session_history_summary, get_open_session_for_profile, end_session as db_end_session
 from memory.error_tracker import get_error_summary

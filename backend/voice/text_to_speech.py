@@ -151,7 +151,6 @@ def _pyttsx3_generate(text: str) -> bytes:
     Lower quality but works with no internet.
     """
     import pyttsx3 # type: ignore
-    import wave
 
     engine = pyttsx3.init()
     engine.setProperty("rate", 150)  # words per minute

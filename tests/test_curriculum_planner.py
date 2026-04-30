@@ -2,10 +2,8 @@
 Tests for the curriculum planner.
 """
 
-import pytest # type: ignore
 from backend.agent.curriculum_planner import CurriculumPlanner
 from backend.memory.error_tracker import log_error
-from backend.memory.session_history import create_session, end_session
 from backend.memory.learner_profile import get_current_curriculum_plan
 from backend.config import MAX_ERRORS_BEFORE_STRATEGY_SWITCH, STAGNATION_SESSION_THRESHOLD
 

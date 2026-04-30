@@ -120,7 +120,7 @@ def build_curriculum_planner_prompt(
     due_reviews: dict,
 ) -> str:
     lang = _language_name(learner_state["target_language"])
-    native = learner_state.get("native_language", "english")
+    learner_state.get("native_language", "english")
 
     return f"""You are the curriculum planning system for a {lang} language tutor. Your job is to decide what the next tutoring session should focus on, based on the learner's complete history and current state.
 

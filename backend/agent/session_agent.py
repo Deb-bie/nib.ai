@@ -8,7 +8,6 @@ when the session ends.
 """
 
 import logging
-from datetime import datetime
 from sqlalchemy.orm import Session # type: ignore
 
 from llm.groq_client import chat, single_turn_json
@@ -16,7 +15,6 @@ from llm.prompt_builder import (
     build_session_system_prompt,
     build_session_evaluation_prompt,
 )
-from llm.response_parser import extract_session_evaluation
 from memory.learner_profile import (
     get_full_learner_state,
     get_learner_profile_by_id,
@@ -31,16 +29,15 @@ from memory.session_history import (
 )
 from memory.error_tracker import (
     log_error,
-    mark_errors_resolved_bulk,
-    get_error_summary,
+    mark_errors_resolved_bulk
 )
 from memory.spaced_repetition import get_due_items_summary
 from agent.curriculum_planner import CurriculumPlanner
 
 logger = logging.getLogger(__name__)
 
-import os as _os
-MAX_USER_EXCHANGES: int = int(_os.getenv("MAX_SESSION_EXCHANGES", "8"))
+import os
+MAX_USER_EXCHANGES: int = int(os.getenv("MAX_SESSION_EXCHANGES", "8"))
 
 
 class SessionAgent:
@@ -254,7 +251,7 @@ class SessionAgent:
             return {"summary": "Session ended without any exchanges.", "performance_score": 0}
 
         user = self.profile.user
-        native = user.native_language if user else "english"
+        user.native_language if user else "english"
 
         # Run evaluation
         eval_prompt = build_session_evaluation_prompt(

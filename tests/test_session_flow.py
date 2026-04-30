@@ -216,7 +216,7 @@ class TestSeedLoader:
     def test_seed_is_idempotent(self, db, test_profile):
         """Running seed twice shouldn't duplicate words."""
         from backend.database.seed_loader import seed_learner_profile
-        r1 = seed_learner_profile(db, test_profile.id, "spanish", "A1")
+        seed_learner_profile(db, test_profile.id, "spanish", "A1")
         r2 = seed_learner_profile(db, test_profile.id, "spanish", "A1")
         assert r2["vocabulary_added"] == 0  # nothing new to add
 

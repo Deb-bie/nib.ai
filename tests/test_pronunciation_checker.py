@@ -4,7 +4,6 @@ Tests for the pronunciation checker.
 All pure logic tests — no Whisper, no audio, no external calls.
 """
 
-import pytest # type: ignore
 from backend.voice.pronunciation_checker import (
     check_pronunciation,
     check_free_speech,

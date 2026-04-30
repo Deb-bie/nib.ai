@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException # type: ignore
 from sqlalchemy.orm import Session # type: ignore
 
 from database.db import get_db
-from memory.error_tracker import get_error_summary, get_recurring_errors
+from memory.error_tracker import get_error_summary
 from memory.learner_profile import (
     get_skill_summary,
     get_current_curriculum_plan,

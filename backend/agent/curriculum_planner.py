@@ -91,7 +91,7 @@ class CurriculumPlanner:
         ]
 
         # Save plan to DB (this deactivates the previous plan)
-        saved = save_curriculum_plan(
+        save_curriculum_plan(
             db=self.db,
             profile_id=self.profile_id,
             session_focus=plan["session_focus"],
