@@ -7,6 +7,7 @@ Run with:
 
 import logging
 from contextlib import asynccontextmanager
+from voice.speech_to_text import preload_whisper_model
 from fastapi import FastAPI # type: ignore
 from fastapi.middleware.cors import CORSMiddleware # type: ignore
 
@@ -60,6 +61,12 @@ async def lifespan(app: FastAPI):
         _run_migrations()
     else:
         logger.error("Database connection FAILED")
+
+    try:
+        preload_whisper_model()
+    except Exception as e:
+        logger.error(f"Failed to preload Whisper model: {e}")
+
     yield
     # Shutdown
     logger.info("Shutting down...")

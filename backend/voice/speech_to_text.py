@@ -43,6 +43,16 @@ def _get_model():
     return _whisper_model
 
 
+def preload_whisper_model() -> None:
+    """
+    Preload Whisper model during application startup.
+    Call this from the lifespan context to avoid first-request timeout.
+    """
+    logger.info("Preloading Whisper model...")
+    _get_model()
+    logger.info("Whisper model preloaded successfully.")
+
+
 # Core transcription
 
 def transcribe_audio(
